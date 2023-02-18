@@ -1,0 +1,52 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Mobile{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+  <div class="col-sm-3">
+   <div class="list-group">
+    <a href="{% url 'laptop' %}" class="list-group-item
+     list-group-item-action" aria-current="true">Laptop</a>
+
+    <a href="{% url 'laptopdata' 'HP' %}"
+      class="list-group-item list-group-item-action" aria-current="true">HP</a>
+
+    <a href="{% url 'laptopdata' 'Lenova' %}"
+      class="list-group-item list-group-item-action" >Lenova</a>
+
+    <a href="{% url 'laptopdata' 'Apple' %}"
+      class="list-group-item list-group-item-action" >Mac</a>
+
+    <a href="{% url 'laptopdata' 'below' %}"
+      class="list-group-item list-group-item-action" >below 60000</a>
+
+    <a href="{% url 'laptopdata' 'above' %}"
+      class="list-group-item list-group-item-action" >Above 60000</a>
+   </div>
+    </div>
+    <div class="col-sm-8">
+     <div class="row">
+     {% for product in laptop  %}
+     <div class="col-12 col-sm-12 col-md-3 col-lg-6  ">
+    <div class="card text-center"style="width:28rem; height:500px;">
+      <a href="{% url 'product-detail' product.id %}"
+        class="btn">
+     <div class="item">
+     <img src="{{product.product_image.url}}" alt=""
+          height="300" class="">
+      <div class="fw-bold">{{product.title}}</div>
+      <div class="fw-bold">{{product.brand}}</div>
+      <div class="fw-bold">Rs.{{product.discount_price}}
+       <small class="fw-light text-decoration-line-through">
+        {{product.selling_price}}</small></div>
+      </div>
+     </a>
+    </div>
+      </div>
+      {% endfor %}
+     </div>
+    </div>
+   </div>
+  </div>
+{% endblock main-content %}
